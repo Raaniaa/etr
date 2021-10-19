@@ -95,7 +95,9 @@ class UserController extends Controller
                 $message->to($verifyUser1->email)->subject
                 ('Reset Password Code');
                });
-               return response()->json(["message" => 'Reset password link sent on your email id.'],200);
+               return response()->json([
+                "data" => $verifyUser1->id,
+                "message" => 'Reset password link sent on your email id.'],200);
             }
             else{
                 $verifyUser = DB::table('password_resets')->insert([
@@ -108,7 +110,9 @@ class UserController extends Controller
                     $message->to($verifyUser1->email)->subject
                     ('Reset Password Code');
                 });
-                return response()->json(["message" => 'Reset password link sent on your email id.'],200);
+                return response()->json([
+                    "data" => $verifyUser1->id,
+                    "message" => 'Reset password link sent on your email id.'],200);
             }
         }
         return response()->json(["message"=> 'user not exist'],404);
