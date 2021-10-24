@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Blogger;
+use App\Models\Banner;
 class ProductController extends Controller
 {   public function uploadsImage(Request $request){
     $hospitalRequest = $request->file;
@@ -102,6 +103,19 @@ class ProductController extends Controller
         }
         return response()->json([
             'message' =>'no Product available',
+           ],500);
+    }
+    public function getBanner(){
+        $product = Banner::count();
+        if($product){
+            $product = Banner::get();
+            return response()->json([
+                'date' =>$product,
+                'message' =>'success',
+               ],200);
+        }
+        return response()->json([
+            'message' =>'no Banner available',
            ],500);
     }
 }
