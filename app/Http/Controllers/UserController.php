@@ -139,4 +139,24 @@ class UserController extends Controller
         }
         return response()->json(["message" =>"not exist"],404);
     }
+    public function resetCode(Request $request) {
+        $credentials = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'token' => 'required',
+           ]);
+        if ($credentials->fails()){
+            return response(['errors'=>$credentials->errors()->all()], 422);
+        }
+        $user = DB::table('password_resets')->where('email', $request->email)->first();
+        if($user){
+            $token=DB::table('password_resets')->where('email', $request->email)->where('token',$request->token)->first();
+            if($token){
+
+                return response()->json(["message" => "resetCode has been successfully"],200);
+            }
+            return response()->json(["message" => "wrong token"],400);
+        }
+        return response()->json(["message" =>"not exist"],404);
+    }
+
 }

@@ -16,10 +16,11 @@ use App\Http\Controllers\ProductController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/forgetPassword', [UserController::class, 'forgetPassword'])->name('forgetPassword');
+Route::post('/forgetPassword', [UserController::class, 'forgetPassword']);
+Route::post('/resetCode', [VerifyEmailController::class, 'resetCode']);
 Route::post('resetPassword', [UserController::class, 'reset']);
-Route::get('/verify', [VerifyEmailController::class, 'VerifyEmail'])->name('verify');
-Route::post('/resend', [VerifyEmailController::class, 'resendMail'])->name('resend');
+Route::get('/verify', [VerifyEmailController::class, 'VerifyEmail']);
+Route::post('/resend', [VerifyEmailController::class, 'resendMail']);
 Route::post('register',[userController::class,'register']);
 Route::post('login',[UserController::class,'login']);
 Route::post('logout',[UserController::class,'logout'])->middleware('auth:sanctum');
