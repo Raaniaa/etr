@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 Route::post('/forgetPassword', [UserController::class, 'forgetPassword']);
-Route::post('/resetCode', [VerifyEmailController::class, 'resetCode']);
+Route::post('/resetCode', [UserController::class, 'resetCode']);
 Route::post('resetPassword', [UserController::class, 'reset']);
 Route::post('/verify', [VerifyEmailController::class, 'VerifyEmail']);
 Route::post('/resend', [VerifyEmailController::class, 'resendMail']);

@@ -45,7 +45,7 @@ class VerifyEmailController extends Controller
         //function resend activation by e-Mail
       public function resendMail(Request $request){
         $id = $request->id;
-        $verifyUser1 = VerifyUser::where('user_id',$id)->with('user')->first();
+        $verifyUser1 = VerifyUser::where('user_id',$id)->first();
         if($verifyUser1){
           $verifyUser = VerifyUser::where('user_id',$id)->update([
           'token' => mt_rand(100000, 999999),
