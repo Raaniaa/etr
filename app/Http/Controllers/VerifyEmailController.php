@@ -50,6 +50,7 @@ class VerifyEmailController extends Controller
           $verifyUser = VerifyUser::where('user_id',$id)->update([
           'token' => mt_rand(100000, 999999),
           ]);
+          $verifyUser1 = VerifyUser::where('user_id',$id)->with('user')->first();
           $verifyUser = array('name'=>$verifyUser1->user->name,'email'=>$verifyUser1->user->email ,'token'=>$verifyUser1->token);
           Mail::send('resend', $verifyUser, function($message) use($verifyUser1) {
             $message->to($verifyUser1->user->email)->subject
