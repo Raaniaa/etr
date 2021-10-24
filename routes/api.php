@@ -26,6 +26,10 @@ Route::post('logout',[UserController::class,'logout'])->middleware('auth:sanctum
 
 
 Route::get('/bestWoman', [ProductController::class, 'bestWoman']);
+Route::get('/bestMan', [ProductController::class, 'bestMan']);
+Route::get('/bestBlogger', [ProductController::class, 'bestBlogger']);
+Route::get('/products', [ProductController::class, 'categorySubProduct']);
+Route::get('/product', [ProductController::class, 'getProduct']);
 Route::post('/uploadsImage', [ProductController::class, 'uploadsImage']);
 Route::post('/createProduct', [ProductController::class, 'createProduct']);
 
