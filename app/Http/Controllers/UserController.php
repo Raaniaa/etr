@@ -66,10 +66,10 @@ class UserController extends Controller
             }
             if($user->verified != 0){
                 if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                    return response(['message' => 'Wrong Password'], 401);
-                } 
-                $accessToken = auth()->user()->createToken('auth_token')->plainTextToken;
-                return response(['user' => auth()->user(), 'access_token' => $accessToken],200);
+                  return response(['message' => 'Wrong Password'], 401);
+                }
+                $accessToken = $user->createToken('auth_token')->plainTextToken;
+                return response(['user' => $user, 'access_token' => $accessToken],200);
             }
             $accessToken = auth()->user()->createToken('auth_token')->plainTextToken;
                 return response(['user' => auth()->user(), 'access_token' => $accessToken],200);
@@ -91,6 +91,7 @@ class UserController extends Controller
                     'email' => $request->email,
                     'token' => mt_rand(100000, 999999),
                 ]);
+                  $tokenData = DB::table('password_resets')->where('email', $request->email)->first();
                 $verifyUser = array('name'=>$verifyUser1->name,'email'=>$verifyUser1->email ,'token'=>$tokenData->token);
                 Mail::send('resetPassword', $verifyUser, function($message) use($verifyUser1) {
                 $message->to($verifyUser1->email)->subject
@@ -132,7 +133,7 @@ class UserController extends Controller
             $token=DB::table('password_resets')->where('email', $request->email)->where('token',$request->token)->first();
             if($token){
                 $reset= User::where('email',$user->email)->update([
-                    'password' => Hash::make('password') ,
+                    'password' => Hash::make($request['password']) ,
                 ]);
                 return response()->json(["message" => "Password has been successfully changed"],200);
             }
