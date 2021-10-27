@@ -15,7 +15,7 @@ class ProductController extends Controller
         $destinationPath = public_path('uploads/');
         $image->move($destinationPath, $input);
         return response()->json([
-            'data' => asset('uploads/'.$input),
+            'data' => asset('public/uploads/'.$input),
             'status' => true,
             'message' => 'success Message'
         ]);
@@ -25,19 +25,22 @@ class ProductController extends Controller
         'message' => 'error message',
     ]);
     }
-    public function createProduct(Request $request){
-        $product = Product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'discount' => $request->discount,
-            'discription' => $request->discription,
-            'image' => $request->image,
-            'type' => $request->type,
-        ]);
-            return response()->json([
-                'data' => $product,
-            ]);
-    }
+    // public function createProduct(Request $request){
+    //     $product = Product::create([
+    //         'name' => $request->name,
+    //         'price' => $request->price,
+    //         'discount' => $request->discount,
+    //         'discription' => $request->discription,
+    //         'image' => $request->image,
+    //         'type' => $request->type,
+    //         'boutique_id' =>$request->boutique_id,
+    //         'category_id'=>$request->category_id,
+    //         'subcategory_id'=>$request->subcategory_id
+    //     ]);
+    //         return response()->json([
+    //             'data' => $product,
+    //         ]);
+    // }
     public function bestWoman(){
         $product = Product::where('type','woman')->count();
         if($product){

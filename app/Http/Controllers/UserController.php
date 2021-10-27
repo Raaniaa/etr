@@ -69,9 +69,10 @@ class UserController extends Controller
                     return response(['message' => 'Wrong Password'], 401);
                 } 
                 $accessToken = auth()->user()->createToken('auth_token')->plainTextToken;
-                return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+                return response(['user' => auth()->user(), 'access_token' => $accessToken],200);
             }
-            return response(['message' => 'account not verify'], 400); 
+            $accessToken = auth()->user()->createToken('auth_token')->plainTextToken;
+                return response(['user' => auth()->user(), 'access_token' => $accessToken],200);
         }
         return response(['message' => 'Email Wrong'], 404); 
     }
