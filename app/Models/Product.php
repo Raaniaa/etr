@@ -12,4 +12,5 @@ class Product extends Model
         'name','price','discount','discription','isOffer','image',
         'type','category_id','subcategory_id','boutique_id','blogger_id'
     ];
+     protected $hidden = ['created_at','updated_at'];
 }
