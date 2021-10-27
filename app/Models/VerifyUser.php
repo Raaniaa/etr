@@ -12,7 +12,7 @@ class VerifyUser extends Model
         'user_id',
         'token',
     ];
-
+   protected $hidden = ['created_at','updated_at'];
 
     public function user()
     {
