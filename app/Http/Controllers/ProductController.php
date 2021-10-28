@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Blogger;
 use App\Models\Boutiques;
 use App\Models\Banner;
+use App\Models\Category;
 class ProductController extends Controller
 {   public function uploadsImage(Request $request){
     $hospitalRequest = $request->file;
@@ -147,6 +148,19 @@ class ProductController extends Controller
         }
         return response()->json([
             'message' =>'no Boutiques available',
+           ],500);
+    }
+    public function Allcategory(){
+        $product = Category::count();
+        if($product){
+            $product = Category::get();
+            return response()->json([
+                'date' =>$product,
+                'message' =>'success',
+               ],200);
+        }
+        return response()->json([
+            'message' =>'no Categories available',
            ],500);
     }
 }

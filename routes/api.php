@@ -34,6 +34,7 @@ Route::get('/product', [ProductController::class, 'getProduct']);
 Route::get('/banner', [ProductController::class, 'getBanner']);
 Route::post('/uploadsImage', [ProductController::class, 'uploadsImage']);
 Route::get('/boutiques', [ProductController::class, 'AllBoutique']);
+Route::get('/categories', [ProductController::class, 'Allcategory']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
