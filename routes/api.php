@@ -33,8 +33,7 @@ Route::get('/products', [ProductController::class, 'categorySubProduct']);
 Route::get('/product', [ProductController::class, 'getProduct']);
 Route::get('/banner', [ProductController::class, 'getBanner']);
 Route::post('/uploadsImage', [ProductController::class, 'uploadsImage']);
-Route::post('/createProduct', [ProductController::class, 'createProduct']);
-
+Route::get('/boutiques', [ProductController::class, 'AllBoutique']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
