@@ -11,4 +11,5 @@ class Box extends Model
     protected $fillable = [
         'name','image','type',
     ];
+    protected $hidden = ['created_at','updated_at'];
 }
