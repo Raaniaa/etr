@@ -8,6 +8,7 @@ use App\Models\Blogger;
 use App\Models\Boutiques;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\favouriteBlogger;
 class ProductController extends Controller
 
 {   public function uploadsImage(Request $request){

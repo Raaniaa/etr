@@ -14,10 +14,10 @@ class favouriteBlogger extends Model
     protected $hidden = ['created_at','updated_at'];
     public function product()
     {
-      return $this->hasMany('App\Models\Product','product_id');
+      return $this->hasMany('App\Models\Product','id','product_id');
     }
     public function blogger()
     {
-      return $this->hasMany('App\Models\Blogger','blogger_id');
+      return $this->hasMany('App\Models\Blogger','id','blogger_id');
     }
 }
