@@ -84,20 +84,7 @@ class ProductController extends Controller
             'message' =>'no Blogger available',
            ],500);
     }
-    public function get_class(Request $request){
-        $user  = User::where('id',$request->id)->first();
-        if($user){
-            $user  = User::where('id',$request->id)->with('user');
-            return response()->json([
-               'data' => $user,
-               'message' => 'success',
-            ],200);
-        }
-        return response()->json([
-           'message' => 'faild'
-        ],200);
 
-    }
     public function categorySubProduct(Request $request){
         $product = Product::where('category_id',$request->categoryId)->where('subcategory_id',$request->subId)->count();
         if($product){
@@ -153,7 +140,7 @@ class ProductController extends Controller
     public function Allcategory(){
         $product = Category::count();
         if($product){
-            $product = Category::get();
+            $product = Category::has('sub')->with('sub')->get();
             return response()->json([
                 'date' =>$product,
                 'message' =>'success',

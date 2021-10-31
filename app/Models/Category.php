@@ -12,4 +12,8 @@ class Category extends Model
         'name','image',
     ];
      protected $hidden = ['created_at','updated_at'];
+     public function sub()
+    {
+      return $this->hasMany('App\Models\SubCategory','category_id');
+    }
 }
