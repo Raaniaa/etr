@@ -24,8 +24,6 @@ class CreateProductsTable extends Migration
             $table->boolean('isOffer')->nullable()->default(false);
             $table->bigInteger('boutique_id')->nullable()->default(12)->unsigned();
             $table->foreign('boutique_id')->references('id')->on('boutiques')->onDelete('cascade');
-            $table->bigInteger('blogger_id')->nullable()->default(12)->unsigned();
-            $table->foreign('blogger_id')->references('id')->on('bloggers')->onDelete('cascade');
             $table->bigInteger('category_id')->nullable()->default(12)->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->bigInteger('subcategory_id')->nullable()->default(12)->unsigned();
