@@ -151,4 +151,18 @@ class ProductController extends Controller
             'message' =>'no Categories available',
            ],500);
     }
+    public function favouriteBlogger(Request $request){
+        $product = favouriteBlogger::where('blogger_id',$request->blooger_id)->count();
+        if($product){
+            $product =favouriteBlogger::where('blogger_id',$request->blooger_id)->has('product')->with('product')->get();
+            return response()->json([
+                'date' =>$product,
+                'message' =>'success',
+               ],200);
+        }
+        return response()->json([
+            'message' =>'no blogger available',
+           ],500);
+    }
+
 }
